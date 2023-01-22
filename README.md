@@ -10,7 +10,7 @@ To Game List is a solution for gamers with filled up backlogs, unnorganized gami
  - Reviews by platform played, 
  - Archievements and progression bar taken from the player's platform account 
  
- -- 
+ ---
  
  ### Research list:
  #### Inspirations
