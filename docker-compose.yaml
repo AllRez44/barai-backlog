@@ -1,0 +1,67 @@
+version: '3'
+services:
+  # Vue.js - Front-End
+  # frontend:
+  #   build:
+  #     context: .
+      
+
+  # Laravel - Backend
+  backend:
+    image: docker.io/bitnami/laravel:9.5.2-debian-11-r1
+    container_name: kgb_backend
+    restart: unless-stopped
+    command: >
+
+    # sh -c "apt update \
+        # apt -qy install $PHPIZE_DEPS \
+        # apt -qy install autoconf \
+        # curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions \
+        # install-php-extensions gd xdebug 
+        # pecl channel-update pecl.php.net"
+    ports:
+      - '8000:8000'
+    environment:
+      # - DB_HOST=
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_DATABASE=kgbdb
+    volumes:
+      - './backend:/app'
+    depends_on:
+      - database
+    networks:
+      - app_network
+    # PHP Debug Extra Host  
+    # extra_hosts:
+    #     - host.docker.internal:host-gateway
+
+  # MariaDB - Data Base - Backend
+  database:
+    image: docker.io/bitnami/mariadb:10.6.11
+    container_name: kgb_db
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes  
+      - MARIADB_DATABASE=kgbdb
+    networks:
+      - app_network
+
+  # PHP My Admin
+  adminer:
+    image: adminer
+    container_name: kgb_phpmyadmin
+    restart: always
+    ports:
+      - 82:8080
+    depends_on:
+      - database
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
