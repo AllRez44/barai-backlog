@@ -7,7 +7,7 @@ services:
       
 
   # Laravel - Backend
-  backend:
+  laravel:
     image: docker.io/bitnami/laravel:9.5.2-debian-11-r1
     container_name: kgb_backend
     restart: unless-stopped
@@ -23,13 +23,13 @@ services:
       - '8000:8000'
     environment:
       # - DB_HOST=
-      - DB_PORT=3306
+      - DB_PORT=4000
       - DB_USERNAME=root
-      - DB_DATABASE=kgbdb
+      - DB_DATABASE=mariadb
     volumes:
       - './backend:/app'
     depends_on:
-      - database
+      - mariadb
     networks:
       - app_network
     # PHP Debug Extra Host  
@@ -37,31 +37,39 @@ services:
     #     - host.docker.internal:host-gateway
 
   # MariaDB - Data Base - Backend
-  database:
+  mariadb:
     image: docker.io/bitnami/mariadb:10.6.11
     container_name: kgb_db
     restart: unless-stopped
+    volumes:
+      - mariadb:/var/lib/mysql
     ports:
-      - 8080:80
+      - 4000:3306
+    expose:
+      - 4000
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
-      - ALLOW_EMPTY_PASSWORD=yes  
-      - MARIADB_DATABASE=kgbdb
+      MARIADB_ROOT_PASSWORD: fidelio
     networks:
       - app_network
 
   # PHP My Admin
-  adminer:
-    image: adminer
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
     container_name: kgb_phpmyadmin
     restart: always
     ports:
-      - 82:8080
+      - 9000:80
+    environment:
+      - PMA_HOST=mariadb
     depends_on:
-      - database
+      - mariadb
     networks:
       - app_network
 
 networks:
   app_network:
     driver: bridge
+
+volumes:
+  mariadb:
