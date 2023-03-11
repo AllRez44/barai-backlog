@@ -1,18 +1,23 @@
 version: '3'
 services:
   # Vue.js - Front-End
-  # frontend:
-  #   build:
-  #     context: .
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: kgb_frontend
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./front:/app
       
-
   # Laravel - Backend
   laravel:
     image: docker.io/bitnami/laravel:9.5.2-debian-11-r1
     container_name: kgb_backend
     restart: unless-stopped
     command: >
-
     # sh -c "apt update \
         # apt -qy install $PHPIZE_DEPS \
         # apt -qy install autoconf \
@@ -20,14 +25,14 @@ services:
         # install-php-extensions gd xdebug 
         # pecl channel-update pecl.php.net"
     ports:
-      - '8000:8000'
+      - 8000:8000
     environment:
       # - DB_HOST=
       - DB_PORT=4000
       - DB_USERNAME=root
       - DB_DATABASE=mariadb
     volumes:
-      - './backend:/app'
+      - './back:/app'
     depends_on:
       - mariadb
     networks:
