@@ -18,7 +18,7 @@ services:
     container_name: kgb_backend
     restart: unless-stopped
     command: >
-    # sh -c "apt update \
+      # sh -c "apt update \
         # apt -qy install $PHPIZE_DEPS \
         # apt -qy install autoconf \
         # curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions \
