@@ -1,5 +1,5 @@
 #  Wishlist anager - Backlog
-To Game List is a solution for gamers with filled up backlogs, unnorganized gaming lists or struggling on fiding the next good game to play. 
+Barai is a solution for anyone filled up with backlogs, unnorganized piles of desired content or activities. 
 
 ### Features: 
  - Wishlist, 
