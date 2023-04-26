@@ -1,4 +1,4 @@
-#  Wishlist anager - Backlog
+#  Wishlist Manager - Backlog
 Barai is a solution for anyone filled up with backlogs, unnorganized piles of desired content or activities. 
 
 ### Features: 
