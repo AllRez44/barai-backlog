@@ -1,4 +1,4 @@
-# to-game-list
+#  Wishlist anager - Backlog
 To Game List is a solution for gamers with filled up backlogs, unnorganized gaming lists or struggling on fiding the next good game to play. 
 
 ### Features: 
@@ -15,16 +15,12 @@ To Game List is a solution for gamers with filled up backlogs, unnorganized gami
  ### Research list:
  #### Inspirations
  - [My Anime List](https://myanimelist.net/) - Inspiration #1
-    - [My Anime List API](https://myanimelist.net/apiconfig/references/api/v2)
+ - [My Anime List API](https://myanimelist.net/apiconfig/references/api/v2)
  - [GameFaqs](https://gamefaqs.gamespot.com/) - Inspiration #2
- - 
+ - [Letterbox](https://letterboxd.com) - Inspiration #3
+ - [iMDB](https://imbd.com) - Inspiration #4
  
  #### APIs to use:
-  - [IGDB](https://www.igdb.com/api) - Games DB API
-  - [Steam API - Wiki](https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerAchievements_.28v0001.29)
-  - [Steam API Docs - Community](https://steamcommunity.com/dev?l=portuguese)
-  - [Xbox API](https://xbl.io/console)
-  - [PSN API](https://psn-api.achievements.app/) - Illegal? Needs further study
-  - [GOG API](https://gogapidocs.readthedocs.io/en/latest/)
-  - [EPIC GAMES API](https://dev.epicgames.com/docs/api-ref)
- 
+  - [TGDB](https://thegamesdb.net/) - Video Games DB API
+  - [?](https://) - Films and TV series API
+  - [?](https://) - Books API
