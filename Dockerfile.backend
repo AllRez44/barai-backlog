@@ -1,0 +1,10 @@
+FROM bitnami/java:17.0.7-7
+
+# Set working directory
+WORKDIR /var/www
+
+# copy project files into container
+COPY ./back /var/www/
+
+# Install system dependencies
+RUN
