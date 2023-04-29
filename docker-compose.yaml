@@ -8,11 +8,12 @@ services:
     container_name: barai_frontend
     restart: always
     ports:
-      - 8080:8080
+      - 80:8000
     volumes:
-      - ./front:/app
+      - ./front/app:/app
     command: >
-      npm install
+      npm run dev
+    tty: true 
   
   # Java - Backend
   backend:
@@ -32,7 +33,7 @@ services:
     volumes:
       - './back:/var/www'
     depends_on:
-      - mariadb
+      - database
     networks:
       - app_network
     # PHP Debug Extra Host  
@@ -45,7 +46,7 @@ services:
     container_name: barai_db
     restart: unless-stopped
     volumes:
-      - mariadb:/var/lib/mysql
+      - database:/var/lib/mysql
     ports:
       - 4000:3306
     expose:
@@ -64,7 +65,7 @@ services:
     ports:
       - 9000:80
     environment:
-      - PMA_HOST=mariadb
+      - PMA_HOST=database
     depends_on:
       - database
     networks:
