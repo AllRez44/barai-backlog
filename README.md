@@ -24,3 +24,14 @@ Barai is a solution for anyone filled up with backlogs, unnorganized piles of de
   - [TGDB](https://thegamesdb.net/) - Video Games DB API
   - [?](https://) - Films and TV series API
   - [?](https://) - Books API
+
+---
+
+### Install Guide
+    ### Requirements:
+        - Docker 17.04.0+
+        - Docker Compose 3.2+
+
+    1. Build Docker containers: docker compose build
+    2. Start Docker containers: docker compose up -d
+
