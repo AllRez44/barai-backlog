@@ -7,10 +7,10 @@ services:
       dockerfile: Dockerfile.frontend
     container_name: barai_frontend
     restart: always
+    volumes: 
+      - front:/app
     ports:
-      - 80:8000
-    volumes:
-      - ./front/app:/app
+      - 4200:8000
     command: >
       npm run dev
     tty: true 
@@ -21,17 +21,20 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     container_name: barai_backend
-    restart: unless-stopped
+    restart: on-failure
+    volumes:
+      - back:/app
     # command: >
     ports:
-      - 8000:8000
+      - 8000:8080
     environment:
-      # - DB_HOST=
-      - DB_PORT=4000
-      - DB_USERNAME=root
-      - DB_DATABASE=database
-    volumes:
-      - './back:/var/www'
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url" : "jdbc:mariadb://database:3306/barai_db?createDatabaseIfNotExist=true",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "fidelio",
+        "spring.jpa.hibernate.ddl-auto" : "update",
+        "spring.jpa.hibernate.dialect" : "org.hibernate.dialect.MYSQL5InnoDBDialect"
+      }'
     depends_on:
       - database
     networks:
@@ -49,11 +52,10 @@ services:
       - database:/var/lib/mysql
     ports:
       - 4000:3306
-    expose:
-      - 4000
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       MARIADB_ROOT_PASSWORD: fidelio
+      MARIADB_DATABASE: barai_db
     networks:
       - app_network
 
@@ -77,3 +79,5 @@ networks:
 
 volumes:
   database:
+  front:
+  back:
