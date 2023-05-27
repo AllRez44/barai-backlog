@@ -34,7 +34,7 @@ public class User {
     @Column(name = "email", nullable = false)
     @NotNull(groups = { CreateUser.class, UpdateUser.class })
     @NotEmpty(groups = { CreateUser.class, UpdateUser.class })
-    public String email;
+    private String email;
 
     public User() {
 
