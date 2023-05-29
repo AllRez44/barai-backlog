@@ -4,7 +4,7 @@ FROM node:lts-alpine3.17
 WORKDIR /app
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY ./front/app /app
+COPY ./front /app
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 

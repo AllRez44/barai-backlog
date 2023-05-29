@@ -12,8 +12,7 @@ services:
     ports:
       - 4200:8000
     command: >
-      npm run dev
-    tty: true 
+      npm run dev --host
   
   # Java - Backend
   backend:
