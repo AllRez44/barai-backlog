@@ -16,8 +16,20 @@ public class BookBacklog extends Backlog{
     @Column(name = "autor")
     private String autor;
 
+    @Column(name = "editora")
+    private String editora;
 
+    @Column(name = "numPaginas")
+    private int numPaginas;
 
-    //TODO: Add more unique to book attributes
+    @Column(name = "genero")
+    private String genero;
+
+    @Column(name = "descricao")
+    private String descricao;
+
+    @Column(name = "anoLancamento")
+    private String anoLancamento;
+
 
 }
