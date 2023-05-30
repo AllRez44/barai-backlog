@@ -19,5 +19,18 @@ public class SeriesBacklog extends Backlog{
     @Column(name = "plataforma")
     private String plataforma;
 
-    //TODO: Add more Series-specific attributes
+    @Column(name="autor")
+    private String autor;
+    @Column(name="numEpisodios")
+    private int numEpisodios;
+    @Column (name="genero")
+    private String genero;
+    @Column (name="paisOrigem")
+    private String paisOrigem;
+    @Column (name="anoLancamento")
+    private int anoLancamento;
+    @Column (name="descricao")
+    private String descricao;
+    @Column (name="direcao")
+    private String direcao;
 }
