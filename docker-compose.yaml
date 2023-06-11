@@ -7,13 +7,15 @@ services:
       dockerfile: Dockerfile.frontend
     container_name: barai_frontend
     restart: always
-    volumes: 
-      - front:/app
-    ports:
-      - 4200:8000
+    volumes:
+      - type: bind
+        source: front
+        target: /app
     command: >
       npm run dev --host
-  
+    ports:
+      - 4200:8000
+    tty: true  
   # Java - Backend
   backend:
     build:
@@ -22,7 +24,7 @@ services:
     container_name: barai_backend
     restart: on-failure
     volumes:
-      - back:/app
+      - ./back:/app
     # command: >
     ports:
       - 8000:8080
