@@ -7,8 +7,12 @@ services:
       dockerfile: Dockerfile.frontend
     container_name: barai_frontend
     restart: always
-    volumes: 
-      - front:/app
+    volumes:
+      - type: bind
+        source: front
+        target: /app
+    tty:
+      true
     ports:
       - 4200:8000
     command: >

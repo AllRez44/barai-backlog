@@ -3,15 +3,15 @@ FROM node:lts-alpine3.17
 # make the 'app' folder the current working directory
 WORKDIR /app
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY ./front /app
-
 # copy both 'package.json' and 'package-lock.json' (if available)
 
-COPY ./front/package*.json ./
+COPY ./front/package*.json .
 
 # install project dependencies
-RUN npm install
+RUN npm ci
+
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY ./front .
 
 # install simple http server for serving static content
 # RUN npm install -g http-server
