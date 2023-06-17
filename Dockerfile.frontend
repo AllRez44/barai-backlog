@@ -3,17 +3,15 @@ FROM node:lts-alpine3.17
 # make the 'app' folder the current working directory
 WORKDIR /app
 
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY ./front /app
+
 # copy both 'package.json' and 'package-lock.json' (if available)
-COPY ./front/package*.json .
+
+COPY ./front/package*.json ./
 
 # install project dependencies
-RUN npm ci
-
-# install nodemon for filesync
-# RUN npm install -g nodemon
-
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY ./front .
+RUN npm install
 
 # install simple http server for serving static content
 # RUN npm install -g http-server
@@ -21,4 +19,4 @@ COPY ./front .
 # # build app for production with minification
 RUN npm run build
 
-CMD ["npm", "run", "dev", "--host"]
+# CMD [ "http-server", "dist" ]
