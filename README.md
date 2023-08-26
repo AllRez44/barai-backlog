@@ -27,11 +27,27 @@ Barai is a solution for anyone filled up with backlogs, unnorganized piles of de
 
 ---
 
-### Install Guide
-    ### Requirements:
-        - Docker 17.04.0+
-        - Docker Compose 3.2+
+## Install Guide
+### Requirements:
+- Docker 17.04.0+
+- Docker Compose 3.2+
 
-    1. Build Docker containers: docker compose build
-    2. Start Docker containers: docker compose up -d
+1. Build Docker containers: ``docker compose build``
+2. Start Docker containers: ``docker compose up -d``
+#### <span style="color:red"> Warning </span>
+- If you want to run the Next.js **LOCALLY** and also wants to use Docker, you may step into the following error:
+
+        yarn run v1.22.19
+        $ next dev
+        - ready started server on [::]:3000, url: http://localhost:3000
+        [Error: EACCES: permission denied, unlink '/path/to/project/barai-backlog/front/.next/server/app-paths-manifest.json'] {
+        errno: -13,
+        code: 'EACCES',
+        syscall: 'unlink',
+        path: '/path/to/project/barai-backlog/front/.next/server/app-paths-manifest.json'
+        }
+
+- If so, run the following code at the project's **root**: ``sudo chmod 777 -R front/.next``
+
+
 
