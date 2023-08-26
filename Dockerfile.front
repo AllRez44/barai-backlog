@@ -1,0 +1,10 @@
+# build
+FROM node:18.16-alpine as build
+WORKDIR /app
+COPY front/package*.json .
+RUN yarn
+COPY front/ .
+RUN yarn build
+
+CMD ["yarn", "start"]
+

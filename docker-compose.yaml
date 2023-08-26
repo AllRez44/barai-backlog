@@ -1,20 +1,20 @@
 version: '3'
 services:
   # React.js - Front-End
-  # frontend:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.frontend
-  #   container_name: barai_frontend
-  #   restart: always
-  #   volumes:
-  #     - type: bind
-  #       source: front
-  #       target: /app
-  #   tty:
-  #     true
-  #   ports:
-  #     - 4200:8000
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.front.dev
+    container_name: barai_frontend
+    restart: always
+    volumes:
+      - type: bind
+        source: front
+        target: /app
+    tty:
+      true
+    ports:
+      - 3000:3000
 
   # ... - Back-End
 
