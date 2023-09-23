@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.17
+FROM node:18.18-alpine3.18 as build
 
 # make the 'app' folder the current working directory
 WORKDIR /app
@@ -6,11 +6,23 @@ WORKDIR /app
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY front/package*.json .
 
+# copy 'yarn.lock' (if available)
+COPY yarn* .
+
 # install project dependencies
 RUN yarn
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY ./front .
+COPY front/ .
 
-# install simple http server for serving static content
-CMD [ "yarn", "dev" ]
+CMD ["yarn", "dev"]
+
+
+# copy build files to the current working directory (i.e. 'app' folder)
+# RUN yarn build
+
+# FROM node:18.18-alpine3.18 as development
+# WORKDIR /app
+# COPY --from=build /app /app
+# COPY --from=build /app/.next /app/.next
+# EXPOSE 3000
