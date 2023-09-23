@@ -17,6 +17,20 @@ services:
       - 3000:3000
 
   # ... - Back-End
+  backend:
+    depends_on:
+      - database
+    container_name: barai-backend
+    ports:
+      - 8080:80
+    build: 
+      context: ./back
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=User ID=root;Password=fidelio;Server=database;Port=5432;Database=barai; IntegratedSecurity=true;Pooling=true;
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - app_network
 
   # Postgres - Data Base
   database:
@@ -26,6 +40,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: fidelio
+      POSTGRES_DB: barai
       PGDATA: /data/postgres
     volumes:
        - postgres-db:/data/postgres
@@ -54,4 +69,4 @@ networks:
 volumes:
   postgres-db:
   front:
-  # back:
+  back:
